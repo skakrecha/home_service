@@ -94,7 +94,6 @@ class PropertyCertificateController extends Controller
             'notes' => 'sometimes',
         ]);
             
-        $property_certificate = new PropertyCertificate();
         $property_certificate->property_id = $request->property_id;
         $property_certificate->name = $request->name;
         $property_certificate->expiry_date = $request->expiry_date ? Carbon::parse($request->expiry_date) : null;
