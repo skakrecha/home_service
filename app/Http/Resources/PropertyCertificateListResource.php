@@ -27,7 +27,7 @@ class PropertyCertificateListResource extends JsonResource
             'name' => $this->name,
             'expiry_date' => $this->expiry_date? Carbon::parse($this->expiry_date) : null,
             'start_date' =>$this->start_date? Carbon::parse($this->start_date) : null,
-            'days_left' => Carbon::parse($this->expiry_date)->gte(now()) ? Carbon::parse($this->expiry_date)->diffInDays().' days left' : 'expired',
+            'days_left' => Carbon::parse($this->expiry_date)->gte(now()) ? Carbon::parse($this->expiry_date)->diffInDays().' days' : 'expired',
             'last_paid_amount' => $this->last_paid_amount,
             'notes' => $this->notes,
             'media' => $media_url,

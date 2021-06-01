@@ -86,7 +86,7 @@ class PropertyCertificateController extends Controller
     public function update(Request $request, PropertyCertificate $property_certificate)
     {
         $request->validate([
-            'property_id' => 'required',
+            // 'property_id' => 'required',
             'name' => 'required',
             'expiry_date' => 'required',
             'start_date' => 'sometimes',
@@ -94,7 +94,7 @@ class PropertyCertificateController extends Controller
             'notes' => 'sometimes',
         ]);
             
-        $property_certificate->property_id = $request->property_id;
+        // $property_certificate->property_id = $request->property_id;
         $property_certificate->name = $request->name;
         $property_certificate->expiry_date = $request->expiry_date ? Carbon::parse($request->expiry_date) : null;
         $property_certificate->start_date = $request->start_date ? Carbon::parse($request->start_date) : null;
