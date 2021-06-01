@@ -18,6 +18,7 @@ class AddAdditionalColumnsIntoAddressesTable extends Migration
             $table->unsignedInteger('number_of_gas_appliances')->nullable();
             $table->unsignedInteger('number_of_electric_appliances')->nullable();
             $table->unsignedInteger('number_of_bedrooms')->nullable();
+            $table->unsignedInteger('number_of_bathrooms')->nullable();
             $table->unsignedInteger('number_of_reception_room')->nullable();
             $table->string('boiler_type')->nullable();
             $table->string('furnished_type')->nullable();

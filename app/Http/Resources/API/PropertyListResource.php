@@ -16,7 +16,7 @@ class PropertyListResource extends JsonResource
     {
         $property_media = $this->getMedia('properties');
         $media_url = [];
-        foreach($property_media as $key => $media){
+        foreach ($property_media as $key => $media) {
             $media_url[$key] = $media->getFullUrl();
         }
 
@@ -30,6 +30,7 @@ class PropertyListResource extends JsonResource
             'number_of_gas_appliances' => $this->number_of_gas_appliances,
             'number_of_electric_appliances' => $this->number_of_electric_appliances,
             'number_of_bedrooms' => $this->number_of_bedrooms,
+            'number_of_bathrooms' => $this->number_of_bathrooms,
             'number_of_reception_room' => $this->number_of_reception_room,
             'boiler_type' => $this->boiler_type,
             'furnished_type' => $this->furnished_type,

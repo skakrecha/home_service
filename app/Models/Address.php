@@ -68,7 +68,12 @@ class Address extends Model implements Castable, HasMedia
         'latitude' => 'double',
         'longitude' => 'double',
         'default' => 'boolean',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'number_of_gas_appliances'=>'string',
+        'number_of_electric_appliances'=>'string',
+        'number_of_bedrooms'=>'string',
+        'number_of_bathrooms'=>'string',
+        'number_of_reception_room'=>'string',
     ];
     /**
      * New Attributes
