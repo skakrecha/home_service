@@ -49,7 +49,7 @@ class PropertyCertificateController extends Controller
         $property_certificate->notes = $request->notes;
         $property_certificate->save();
 
-        if($request->certificate_media){
+        if($request->certificate_media != null){
             foreach($request->certificate_media as $index => $media){
                 $property_certificate->addMedia($media)
                             ->usingName('certificate_image')
@@ -103,7 +103,7 @@ class PropertyCertificateController extends Controller
         $property_certificate->notes = $request->notes;
         $property_certificate->save();
 
-        if($request->certificate_media){
+        if($request->certificate_media != null){
             foreach($request->certificate_media as $index => $media){
                 $property_certificate->addMedia($media)
                             ->usingName('certificate_image')

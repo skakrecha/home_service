@@ -18,7 +18,7 @@ class PropertyController extends Controller
     {
         $user = $request->user();
 
-        $properties = $user->addresses()->with('user')->get();
+        $properties = $user->addresses()->with(['user', 'certificates'])->get();
 
         return PropertyListResource::collection($properties);
 
@@ -70,7 +70,7 @@ class PropertyController extends Controller
         $property->user_id = $user->id;
         $property->save();
 
-        if($request->property_media){
+        if($request->property_media != null){
             foreach($request->property_media as $index => $media){
                 $property->addMedia($media)
                             ->usingName('property_image')
@@ -140,7 +140,7 @@ class PropertyController extends Controller
         $address->user_id = $user->id;
         $address->update();
 
-        if($request->property_media){
+        if($request->property_media != null){
             foreach($request->property_media as $index => $media){
                 $address->addMedia($media)
                             ->usingName('property_image')

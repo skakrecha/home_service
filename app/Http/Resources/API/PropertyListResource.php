@@ -3,6 +3,7 @@
 namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PropertyCertificateListResource;
 
 class PropertyListResource extends JsonResource
 {
@@ -38,6 +39,7 @@ class PropertyListResource extends JsonResource
             'parking' => $this->parking,
             'notes' => $this->notes,
             'media' => $media_url,
+            'certificates' => PropertyCertificateListResource::collection($this->certificates),
         ];
     }
 }
