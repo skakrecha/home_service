@@ -106,4 +106,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('property_certificates/{address}',            'API\PropertyCertificateController@index');
     Route::resource('property_certificate',                 'API\PropertyCertificateController');
     Route::post('property_certificate/{property_certificate}/update',    'API\PropertyCertificateController@update');
+
+    Route::post('media/{media}/delete',           'API\MediaController@destroy');
 });
