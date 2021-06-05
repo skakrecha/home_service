@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\API;
 
+use App\Http\Resources\API\MediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PropertyCertificateListResource;
 
@@ -15,11 +16,11 @@ class PropertyListResource extends JsonResource
      */
     public function toArray($request)
     {
-        $property_media = $this->getMedia('properties');
-        $media_url = [];
-        foreach ($property_media as $key => $media) {
-            $media_url[$key] = $media->getFullUrl();
-        }
+        // $property_media = $this->getMedia('properties');
+        // $media_url = [];
+        // foreach ($property_media as $key => $media) {
+        //     $media_url[$key] = $media->getFullUrl();
+        // }
 
         return [
             'id' => $this->id,
@@ -38,7 +39,7 @@ class PropertyListResource extends JsonResource
             'outside_space' => $this->outside_space,
             'parking' => $this->parking,
             'notes' => $this->notes,
-            'media' => $media_url,
+            'media' =>  MediaResource::collection($this->getMedia('properties')),
             'certificates' => PropertyCertificateListResource::collection($this->certificates),
         ];
     }

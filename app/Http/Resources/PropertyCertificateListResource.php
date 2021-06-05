@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Carbon\Carbon;
+use App\Http\Resources\API\MediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PropertyCertificateListResource extends JsonResource
@@ -15,11 +16,11 @@ class PropertyCertificateListResource extends JsonResource
      */
     public function toArray($request)
     {
-        $certificate_media = $this->getMedia('property_certificate');
-        $media_url = [];
-        foreach($certificate_media as $key => $media){
-            $media_url[$key] = $media->getFullUrl();
-        }
+        // $certificate_media = $this->getMedia('property_certificate');
+        // $media_url = [];
+        // foreach($certificate_media as $key => $media){
+        //     $media_url[$key] = $media->getFullUrl();
+        // }
 
         return [
             'id' => $this->id,
@@ -30,7 +31,7 @@ class PropertyCertificateListResource extends JsonResource
             'days_left' => Carbon::parse($this->expiry_date)->gte(now()) ? Carbon::parse($this->expiry_date)->diffInDays().' days' : 'expired',
             'last_paid_amount' => $this->last_paid_amount,
             'notes' => $this->notes,
-            'media' => $media_url,
+            'media' => MediaResource::collection($this->getMedia('property_certificate')),
         ];
     }
 }
