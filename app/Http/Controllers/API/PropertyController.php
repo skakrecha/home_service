@@ -18,7 +18,9 @@ class PropertyController extends Controller
     {
         $user = $request->user();
 
-        $properties = $user->addresses()->with(['user', 'certificates'])->get();
+        $properties = $user->addresses()->with(['user', 'certificates' => function($query){
+            $query->orderBy('expiry_date', 'asc');
+        }])->get();
 
         return PropertyListResource::collection($properties);
 
@@ -89,7 +91,9 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        $property = Address::find($id);
+        $property = Address::where('id', $id)->with(['user', 'certificates' => function($query){
+            $query->orderBy('expiry_date', 'asc');
+        }])->first();
 
         return new PropertyListResource($property);
 
