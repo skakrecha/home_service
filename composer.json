@@ -38,6 +38,7 @@
         "spatie/laravel-translatable": "^4.6",
         "spatie/opening-hours": "^2.10",
         "srmklive/paypal": "^1.8.0",
+        "twilio/sdk": "^6.24",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {

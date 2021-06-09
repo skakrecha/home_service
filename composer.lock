@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87b901f380c54ff4b979e1526ca8faa9",
+    "content-hash": "fde753f34c6ea71a59efe0b6cffa91a0",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -1325,7 +1325,6 @@
             "require-dev": {
                 "phpspec/phpspec": "~6.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -4906,7 +4905,6 @@
                 "mockery/mockery": "~0.9",
                 "phpunit/phpunit": "~5.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -8143,6 +8141,56 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "6.24.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "3438bcdb42a8fabcfaa081670d5924b868016148"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/3438bcdb42a8fabcfaa081670d5924b868016148",
+                "reference": "3438bcdb42a8fabcfaa081670d5924b868016148",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=4.5",
+                "theseer/phpdox": "^0.12.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2021-06-02T20:26:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -12463,7 +12511,14 @@
             "time": "2021-03-09T10:59:23+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.1.4",
+            "alias_normalized": "1.1.4.0",
+            "version": "9999999-dev",
+            "package": "laracasts/generators"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "laracasts/generators": 20,
@@ -12478,5 +12533,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

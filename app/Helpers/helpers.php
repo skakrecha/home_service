@@ -7,11 +7,12 @@
  */
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Blade;
+use Twilio\Rest\Client;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Blade;
 use InfyOm\Generator\Common\GeneratorField;
-use InfyOm\Generator\Utils\GeneratorFieldsInputUtil;
 use InfyOm\Generator\Utils\HTMLFieldGenerator;
+use InfyOm\Generator\Utils\GeneratorFieldsInputUtil;
 use Symfony\Component\ErrorHandler\Error\FatalError;
 
 /**
@@ -701,4 +702,14 @@ function isJson($string)
 {
     json_decode($string);
     return (json_last_error() == JSON_ERROR_NONE);
+}
+
+function sendSMS($message, $recipients)
+{
+    $account_sid = getenv("TWILIO_SID");
+    $auth_token = getenv("TWILIO_AUTH_TOKEN");
+    $twilio_number = getenv("TWILIO_NUMBER");
+    $client = new Client($account_sid, $auth_token);
+   return $client->messages->create($recipients, 
+            ['from' => $twilio_number, 'body' => $message] );
 }

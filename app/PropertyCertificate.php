@@ -10,4 +10,8 @@ class PropertyCertificate extends Model implements HasMedia
 {
     use HasMediaTrait;
     
+    public function property()
+    {
+        return $this->belongsTo(\App\Models\Address::class, 'property_id');
+    }
 }
