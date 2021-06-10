@@ -44,6 +44,7 @@ class PropertyController extends Controller
             'number_of_gas_appliances' => 'sometimes',
             'number_of_electric_appliances' => 'sometimes',
             'number_of_bedrooms' => 'sometimes',
+            'number_of_bathrooms' => 'sometimes',
             'number_of_reception_room' => 'sometimes',
             'boiler_type' => 'sometimes',
             'furnished_type' => 'sometimes',
@@ -63,6 +64,7 @@ class PropertyController extends Controller
         $property->number_of_gas_appliances = $request->number_of_gas_appliances;
         $property->number_of_electric_appliances = $request->number_of_electric_appliances;
         $property->number_of_bedrooms = $request->number_of_bedrooms;
+        $property->number_of_bathrooms = $request->number_of_bathrooms;
         $property->number_of_reception_room = $request->number_of_reception_room;
         $property->boiler_type = $request->boiler_type;
         $property->furnished_type = $request->furnished_type;
@@ -117,6 +119,7 @@ class PropertyController extends Controller
             'number_of_gas_appliances' => 'sometimes',
             'number_of_electric_appliances' => 'sometimes',
             'number_of_bedrooms' => 'sometimes',
+            'number_of_bathrooms' => 'sometimes',
             'number_of_reception_room' => 'sometimes',
             'boiler_type' => 'sometimes',
             'furnished_type' => 'sometimes',
@@ -135,6 +138,7 @@ class PropertyController extends Controller
         $address->number_of_gas_appliances = $request->number_of_gas_appliances;
         $address->number_of_electric_appliances = $request->number_of_electric_appliances;
         $address->number_of_bedrooms = $request->number_of_bedrooms;
+        $address->number_of_bathrooms = $request->number_of_bathrooms;
         $address->number_of_reception_room = $request->number_of_reception_room;
         $address->boiler_type = $request->boiler_type;
         $address->furnished_type = $request->furnished_type;
