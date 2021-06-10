@@ -83,7 +83,7 @@ class Address extends Model implements Castable, HasMedia
      */
     protected $appends = [
         'custom_fields',
-        // 'property_media',
+        'property_media',
     ];
 
     protected $hidden = [
@@ -119,14 +119,14 @@ class Address extends Model implements Castable, HasMedia
         return $this->morphMany('App\Models\CustomFieldValue', 'customizable');
     }
 
-    // public function getPropertyMediaAttribute()
-    // {
-    //     $image =null;
-    //     if($media = $this->getMedia('properties')->last()){
-    //         $image = $media->getUrl();
-    //     }
-    //     return $image;
-    // }
+    public function getPropertyMediaAttribute()
+    {
+        $image =null;
+        if ($media = $this->getMedia('properties')->last()) {
+            $image = $media->getUrl();
+        }
+        return $image;
+    }
 
     /**
      * @return BelongsTo
