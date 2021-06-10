@@ -83,6 +83,7 @@ class Address extends Model implements Castable, HasMedia
      */
     protected $appends = [
         'custom_fields',
+        'property_media',
     ];
 
     protected $hidden = [
