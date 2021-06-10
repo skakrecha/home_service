@@ -34,7 +34,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
  * @property boolean default
  * @property integer user_id
  */
-class Address extends Model implements Castable, HasMediaConversions
+class Address extends Model implements Castable, HasMedia
 {
     use HasMediaTrait;
     /**
