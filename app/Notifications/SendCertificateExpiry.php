@@ -79,7 +79,7 @@ class SendCertificateExpiry extends Notification
     public function toArray($notifiable)
     {
         return [
-            'certificate_name' => 'your inventory '.$this->certificate->name.'Expired on '.Carbon::parse($this->certificate->expiry_date)->format('d M Y'),
+            'body' => 'your inventory '.$this->certificate->name.'Expired on '.Carbon::parse($this->certificate->expiry_date)->format('d M Y'),
             'title' => 'Inventory expiry',
         ];
     }
