@@ -79,8 +79,20 @@ class SendCertificateExpiry extends Notification
     public function toArray($notifiable)
     {
         return [
-            'certificate_name' => $this->certificate->name,
-            'expiry_date' => $this->certificate->expiry_date,
+            'certificate_name' => 'your inventory '.$this->certificate->name.'Expired on '.Carbon::parse($this->certificate->expiry_date)->format('d M Y'),
+            'title' => 'Inventory expiry',
         ];
+    }
+
+    /**
+     * Route notifications for the FCM channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+    */
+    
+    public function routeNotificationForFcm($notification)
+    {
+        return $this->device_token;
     }
 }

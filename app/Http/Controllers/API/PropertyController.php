@@ -93,7 +93,8 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        $property = Address::where('id', $id)->with(['user', 'certificates' => function($query){
+        $property = Address::where('id', $id)
+        ->with(['user', 'certificates' => function($query){
             $query->orderBy('expiry_date', 'asc');
         }])->first();
 
@@ -167,7 +168,6 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-
         $property = Address::find($id);
 
         $property->delete();

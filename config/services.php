@@ -73,6 +73,6 @@ return [
     ],
 
     'fcm' => [
-        'key' => '',
+        'key' => env('FCM_SECRET_KEY'),
     ]
 ];
