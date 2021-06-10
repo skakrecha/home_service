@@ -125,7 +125,7 @@ class Address extends Model implements Castable, HasMedia
     {
         $image =null;
         if ($media = $this->getMedia('properties')->last()) {
-            $image = $media->getUrl();
+            $image = $media->getFullUrl();
         }
         return $image;
     }
