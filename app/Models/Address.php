@@ -34,7 +34,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
  * @property boolean default
  * @property integer user_id
  */
-class Address extends Model implements Castable, HasMedia
+class Address extends Model implements Castable, HasMediaConversions
 {
     use HasMediaTrait;
     /**
@@ -123,7 +123,7 @@ class Address extends Model implements Castable, HasMedia
     {
         $image =null;
         if($media = $this->getMedia('properties')->last()){
-            $image =  $media->getFullUrl();
+            $image = $media->getUrl();
         }
         return $image;
     }
