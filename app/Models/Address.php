@@ -74,6 +74,7 @@ class Address extends Model implements Castable, HasMedia
         'number_of_bedrooms'=>'string',
         'number_of_bathrooms'=>'string',
         'number_of_reception_room'=>'string',
+        'property_media' => 'string',
     ];
     /**
      * New Attributes
@@ -115,6 +116,15 @@ class Address extends Model implements Castable, HasMedia
     public function customFieldsValues()
     {
         return $this->morphMany('App\Models\CustomFieldValue', 'customizable');
+    }
+
+    public function getPropertyMediaAttribute()
+    {
+        $image =null;
+        if($media = $this->getMedia('properties')->last()){
+            $image =  $media->getFullUrl();
+        }
+        return $image;
     }
 
     /**
