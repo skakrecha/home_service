@@ -38,7 +38,8 @@ class BookingRepository extends BaseRepository
         'booking_at',
         'start_at',
         'ends_at',
-        'hint'
+        'hint',
+        'contact_number'
     ];
 
     /**

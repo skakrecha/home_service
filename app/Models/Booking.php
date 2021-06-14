@@ -54,7 +54,8 @@ class Booking extends Model
     public static $rules = [
         'user_id' => 'required|exists:users,id',
         'booking_status_id' => 'required|exists:booking_statuses,id',
-        'payment_id' => 'nullable|exists:payments,id'
+        'payment_id' => 'nullable|exists:payments,id',
+        'contact_number' => 'nullable',
     ];
     public $table = 'bookings';
     public $fillable = [
@@ -72,7 +73,8 @@ class Booking extends Model
         'start_at',
         'ends_at',
         'hint',
-        'cancel'
+        'cancel',
+        'contact_number',
     ];
     /**
      * The attributes that should be casted to native types.
@@ -95,7 +97,8 @@ class Booking extends Model
         'start_at' => 'datetime:Y-m-d\TH:i:s.uP',
         'ends_at' => 'datetime:Y-m-d\TH:i:s.uP',
         'hint' => 'string',
-        'cancel' => 'boolean'
+        'cancel' => 'boolean',
+        'contact_number' => 'string',
     ];
     /**
      * New Attributes
