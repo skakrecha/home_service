@@ -18,7 +18,8 @@ class PropertyController extends Controller
     {
         $user = $request->user();
 
-        $properties = $user->addresses()->with(['user', 'certificates' => function($query){
+        $properties = $user->addresses()
+        ->with(['user', 'certificates' => function($query){
             $query->orderBy('expiry_date', 'asc');
         }])->get();
 
