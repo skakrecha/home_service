@@ -42,7 +42,7 @@ class UserAPIController extends Controller
         $this->customFieldRepository = $customFieldRepo;
     }
 
-    function login(Request $request)
+    public function login(Request $request)
     {
         try {
             $this->validate($request, [
@@ -63,7 +63,6 @@ class UserAPIController extends Controller
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), 200);
         }
-
     }
 
     /**
@@ -72,20 +71,27 @@ class UserAPIController extends Controller
      * @param array $data
      * @return
      */
-    function register(Request $request)
+    public function register(Request $request)
     {
         try {
             $this->validate($request, [
                 'name' => 'required',
-                'email' => 'required|unique:users|email',
+                'email' => 'required|email',
                 'phone_number' => 'required',
                 'password' => 'required',
             ]);
+
+            $exists=User::where('email', $request->email)->orWhere('phone', $request->phone_number)->exists();
+            if ($exists) {
+                return $this->sendError('User with same Email or Phone number already exists !', 200);
+            }
+
+        
             $user = new User;
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->phone_number = $request->input('phone_number');
-            $user->phone_verified_at = $request->input('phone_number');
+            $user->phone_verified_at = now();
             $user->device_token = $request->input('device_token', '');
             $user->password = Hash::make($request->input('password'));
             $user->api_token = Str::random(60);
@@ -111,7 +117,7 @@ class UserAPIController extends Controller
         return $this->sendResponse($user, 'User retrieved successfully');
     }
 
-    function logout(Request $request)
+    public function logout(Request $request)
     {
         $user = $this->userRepository->findByField('api_token', $request->input('api_token'))->first();
         if (!$user) {
@@ -123,10 +129,9 @@ class UserAPIController extends Controller
             $this->sendError($e->getMessage(), 200);
         }
         return $this->sendResponse($user['name'], 'User logout successfully');
-
     }
 
-    function user(Request $request)
+    public function user(Request $request)
     {
         $user = $this->userRepository->findByField('api_token', $request->input('api_token'))->first();
 
@@ -137,10 +142,11 @@ class UserAPIController extends Controller
         return $this->sendResponse($user, 'User retrieved successfully');
     }
 
-    function settings(Request $request)
+    public function settings(Request $request)
     {
         $settings = setting()->all();
-        $settings = array_intersect_key($settings,
+        $settings = array_intersect_key(
+            $settings,
             [
                 'default_tax' => '',
                 'default_currency' => '',
@@ -212,7 +218,7 @@ class UserAPIController extends Controller
         return $this->sendResponse($user, __('lang.updated_successfully', ['operator' => __('lang.user')]));
     }
 
-    function sendResetLinkEmail(Request $request)
+    public function sendResetLinkEmail(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
 
@@ -225,6 +231,5 @@ class UserAPIController extends Controller
         } else {
             return $this->sendError('Reset link not sent', 200);
         }
-
     }
 }
