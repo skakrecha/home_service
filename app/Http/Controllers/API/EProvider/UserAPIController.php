@@ -80,36 +80,36 @@ class UserAPIController extends Controller
      */
     public function register(Request $request)
     {
-        try {
-            $this->validate($request, [
+        // try {
+        $this->validate($request, [
                 'name' => 'required',
                 'email' => 'required|email',
                 'phone_number' => 'required',
                 'password' => 'required',
             ]);
 
-            $exists=User::where('email', $request->email)->orWhere('phone', $request->phone_number)->exists();
-            if ($exists) {
-                return $this->sendError('User with same Email or Phone number already exists !', 200);
-            }
-            $user = new User;
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->phone_number = $request->input('phone_number');
-            $user->phone_verified_at = now();
-            // $user->phone_verified_at = $request->input('phone_number');
-            $user->device_token = $request->input('device_token', '');
-            $user->password = Hash::make($request->input('password'));
-            $user->api_token = Str::random(60);
-            $user->save();
-            $defaultRoles = $this->roleRepository->findByField('default', '1');
-            $defaultRoles = $defaultRoles->pluck('name')->toArray();
-            $user->assignRole($defaultRoles);
-        } catch (ValidationException $e) {
-            return $this->sendError(array_values($e->errors()));
-        } catch (Exception $e) {
-            return $this->sendError($e->getMessage(), 200);
+        $exists=User::where('email', $request->email)->orWhere('phone', $request->phone_number)->exists();
+        if ($exists) {
+            return $this->sendError('User with same Email or Phone number already exists !', 200);
         }
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phone_number');
+        $user->phone_verified_at = now();
+        // $user->phone_verified_at = $request->input('phone_number');
+        $user->device_token = $request->input('device_token', '');
+        $user->password = Hash::make($request->input('password'));
+        $user->api_token = Str::random(60);
+        $user->save();
+        $defaultRoles = $this->roleRepository->findByField('default', '1');
+        $defaultRoles = $defaultRoles->pluck('name')->toArray();
+        $user->assignRole($defaultRoles);
+        // } catch (ValidationException $e) {
+        //     return $this->sendError(array_values($e->errors()));
+        // } catch (Exception $e) {
+        //     return $this->sendError($e->getMessage(), 200);
+        // }
 
         return $this->sendResponse($user, 'User retrieved successfully');
     }
