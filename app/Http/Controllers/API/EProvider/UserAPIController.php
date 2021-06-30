@@ -83,7 +83,7 @@ class UserAPIController extends Controller
         try {
             $this->validate($request, [
                 'name' => 'required',
-                'email' => 'required|unique:users|email',
+                'email' => 'required|email',
                 'phone_number' => 'required',
                 'password' => 'required',
             ]);
