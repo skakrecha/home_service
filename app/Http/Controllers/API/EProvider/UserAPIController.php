@@ -97,7 +97,6 @@ class UserAPIController extends Controller
             $user->password = Hash::make($request->input('password'));
             $user->api_token = Str::random(60);
             $user->save();
-
             $defaultRoles = $this->roleRepository->findByField('default', '1');
             $defaultRoles = $defaultRoles->pluck('name')->toArray();
             $user->assignRole($defaultRoles);
@@ -106,7 +105,6 @@ class UserAPIController extends Controller
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), 200);
         }
-
 
         return $this->sendResponse($user, 'User retrieved successfully');
     }
