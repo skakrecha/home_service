@@ -81,7 +81,7 @@ class UserAPIController extends Controller
                 'password' => 'required',
             ]);
 
-            $exists=User::where('email', $request->email)->orWhere('phone', $request->phone_number)->exists();
+            $exists=User::where('email', $request->email)->orWhere('phone_number', $request->phone_number)->exists();
             if ($exists) {
                 return $this->sendError('User with same Email or Phone number already exists !', 200);
             }
